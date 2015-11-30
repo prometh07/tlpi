@@ -1,2 +1,2 @@
 # tlpi
-the linux interface programming exercises
+the linux programming interface exercises
