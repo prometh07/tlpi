@@ -1,0 +1,2 @@
+fflush(fp) - moves data from stdio buffer into kernel buffer
+fsync(fileno(fp)) - writes data in kernel buffer to disk
