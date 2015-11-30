@@ -27,11 +27,11 @@ int main(int argc, char** argv) {
           try(write(to_fd, buffer+from_index, i-from_index) != -1) // write data before the hole
         }
         hole_size++;
+        from_index = i+1;
       }
       else if(hole_size > 0) {
         try(lseek(to_fd, hole_size, SEEK_CUR) != -1) // write hole
         hole_size = 0;
-        from_index = i;
       }
     }
     try(lseek(to_fd, hole_size, SEEK_CUR) != -1) // write the last hole
