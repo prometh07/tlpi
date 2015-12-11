@@ -42,15 +42,16 @@ int main(int argc, char** argv) {
   
   pid_t pid;
   try( (pid = fork()) >= 0 )
-  if (pid > 0) {
+  if (pid == 0) {
     try( close(pipe_file_descriptors[0]) != -1 )
     int i = 0;
     for (i = 0; i < number_of_blocks; i++) {
       try( write(pipe_file_descriptors[1], buffer, sizeof(buffer)) != -1 )
     }
     try( close(pipe_file_descriptors[1]) != -1 )
+    //_exit(0);
   }
-  else if (pid == 0) {
+  else if (pid > 0) {
     try( close(pipe_file_descriptors[1]) != -1 )
     int bytes_read = 0;
     int blocks_read = 0;
